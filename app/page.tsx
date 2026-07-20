@@ -5,6 +5,7 @@ import LoadingView from "@/components/LoadingView";
 import HistoryView from "@/components/HistoryView";
 import ResultView from "@/components/ResultView";
 import ManualForm from "@/components/ManualForm";
+import { nextRunLabel, submitRequest } from "@/lib/request-queue";
 import { deleteRecordRemote, fetchHistory, migrateLegacyHistoryOnce } from "@/lib/storage";
 import type {
   EvalRecord,
@@ -15,6 +16,9 @@ import type {
 } from "@/lib/types";
 
 type View = "input" | "loading" | "result" | "history" | "manual";
+
+/** 静的配信モード(Cloudflare Pages・サブスク内運用): 即時評価せず受付キューに積む */
+const STATIC_MODE = process.env.NEXT_PUBLIC_STATIC === "1";
 
 interface ManualContext {
   /** fallback: URL読み取り失敗後の手入力 / correction: 読み取り内容の修正再評価 */
@@ -57,6 +61,7 @@ export default function Home() {
   const [records, setRecords] = useState<EvalRecord[]>([]);
   const [current, setCurrent] = useState<EvalRecord | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
   const [manualCtx, setManualCtx] = useState<ManualContext | null>(null);
   const [reEvaluating, setReEvaluating] = useState(false);
 
@@ -82,6 +87,20 @@ export default function Home() {
     const trimmed = url.trim();
     if (!trimmed) return;
     setError(null);
+    setNotice(null);
+    if (STATIC_MODE) {
+      // サブスク内運用: その場では評価せず受付キューへ(定期便 6/12/18/24時が評価)
+      try {
+        await submitRequest(trimmed);
+        setNotice(
+          `✅ 受け付けました！ 次の定期便（${nextRunLabel()}ごろ）で評価され、「評価ずみ物件」に追加されます。`,
+        );
+        setUrl("");
+      } catch (e) {
+        setError((e as Error).message);
+      }
+      return;
+    }
     setView("loading");
     try {
       const record = await callEvaluate({ url: trimmed });
@@ -124,6 +143,22 @@ export default function Home() {
 
   /** 履歴からの再評価（相場は変動するため最新データで取り直す） */
   async function reEvaluate(record: EvalRecord) {
+    if (STATIC_MODE) {
+      // 再評価も受付キュー経由(URLがない手入力物件は定期便の自動最新化に任せる)
+      setError(null);
+      setNotice(null);
+      try {
+        if (record.url) await submitRequest(record.url);
+        setNotice(
+          record.url
+            ? `✅ 再評価を受け付けました。次の定期便（${nextRunLabel()}ごろ）で最新の相場に更新されます。`
+            : "この物件はURLがないため、定期便の自動更新をお待ちください。",
+        );
+      } catch (e) {
+        setError((e as Error).message);
+      }
+      return;
+    }
     setReEvaluating(true);
     setError(null);
     try {
@@ -156,6 +191,10 @@ export default function Home() {
 
   /** 読み取り確認カードの「修正して再評価」 */
   function startCorrection(record: EvalRecord) {
+    if (STATIC_MODE) {
+      setNotice("表示内容の修正は定期便の自動更新に反映されます。急ぎの場合はスプレッドシートのメモ欄に書いてください。");
+      return;
+    }
     setManualCtx({
       mode: "correction",
       recordId: record.id,
@@ -177,6 +216,7 @@ export default function Home() {
             <h1>🏠 Kei House Search</h1>
           </header>
           {error && <div className="error-box">{error}</div>}
+          {notice && <div className="notice-box">{notice}</div>}
           <div className="card">
             <label className="field-label" htmlFor="url-input" style={{ marginTop: 0, fontSize: 15 }}>
               物件ページのURLを貼り付けてください
@@ -260,6 +300,7 @@ export default function Home() {
             </button>
           </header>
           {error && <div className="error-box">{error}</div>}
+          {notice && <div className="notice-box">{notice}</div>}
           <ResultView
             record={current}
             onCorrect={() => startCorrection(current)}
@@ -285,7 +326,7 @@ export default function Home() {
               setError(null);
               setView("result");
             }}
-            onDelete={handleDelete}
+            onDelete={STATIC_MODE ? undefined : handleDelete}
           />
         </>
       )}

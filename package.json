@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:static": "node scripts/build-static.mjs",
+    "deploy": "node scripts/build-static.mjs && wrangler pages deploy out",
     "start": "next start",
     "lint": "next lint"
   },

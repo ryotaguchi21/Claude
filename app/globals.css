@@ -495,3 +495,17 @@ button {
   :root { --line: rgba(0, 0, 0, 0.4); }
   .card, .history-item, .report .report-section, .report .detail-section { box-shadow: none; }
 }
+
+/* 受付完了などのお知らせ（成功系。error-box の緑版） */
+.notice-box {
+  background: rgba(52, 199, 89, 0.13);
+  color: #248a3d;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+@media (prefers-color-scheme: dark) {
+  .notice-box { color: #30d158; }
+}

@@ -17,7 +17,8 @@ export default function HistoryView({
 }: {
   records: EvalRecord[];
   onOpen: (record: EvalRecord) => void;
-  onDelete: (id: string) => void;
+  /** 未指定なら削除ボタンを出さない（静的配信モード） */
+  onDelete?: (id: string) => void;
 }) {
   if (records.length === 0) {
     return <div className="empty-note">まだ評価した物件がありません。<br />URLを入力して最初の評価をしてみましょう。</div>;
@@ -41,18 +42,20 @@ export default function HistoryView({
             </div>
             <div className="history-summary">{r.meta.summary}</div>
           </button>
-          <button
-            type="button"
-            className="trash-btn"
-            aria-label="この履歴を削除"
-            onClick={() => {
-              if (window.confirm(`「${r.meta.propertyName || "この物件"}」の評価を削除しますか？`)) {
-                onDelete(r.id);
-              }
-            }}
-          >
-            🗑
-          </button>
+          {onDelete && (
+            <button
+              type="button"
+              className="trash-btn"
+              aria-label="この履歴を削除"
+              onClick={() => {
+                if (window.confirm(`「${r.meta.propertyName || "この物件"}」の評価を削除しますか？`)) {
+                  onDelete(r.id);
+                }
+              }}
+            >
+              🗑
+            </button>
+          )}
         </div>
       ))}
     </div>

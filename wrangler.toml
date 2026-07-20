@@ -1,0 +1,10 @@
+# Cloudflare Pages 設定（静的配信 + _worker.js の薄いAPI層）
+# デプロイ: node scripts/build-static.mjs && npx wrangler pages deploy out
+name = "kei-house-search"
+pages_build_output_dir = "out"
+compatibility_date = "2026-07-01"
+
+# 評価リクエストの受付キュー（定期便 6/12/18/24時 が取り出して評価）
+[[kv_namespaces]]
+binding = "REQUESTS"
+id = "415cc5ab096e4e7bbbe4674ce9b4e359"
