@@ -1,7 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { ENGINE_PROMPT } from "@/lib/evaluation-prompt";
-import type { EvalMeta, EvaluateRequest } from "@/lib/types";
+import { getRecord, newServerId, upsertRecord } from "@/lib/server-store";
+import type { EvalMeta, EvalRecord, EvaluateRequest } from "@/lib/types";
 
 // 相場調査に時間がかかるため、実行時間の上限を広めに取る（Vercel等のサーバーレス用）
 export const maxDuration = 300;
@@ -228,7 +229,19 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ meta, reportHtml: sanitizeHtml(reportHtml) });
+    // 共有ストアへ保存（全ユーザー共通・ログイン不要）。
+    // recordId指定時は既存レコードを置換し、URLは元レコードのものを引き継ぐ。
+    const prev = body.recordId ? await getRecord(body.recordId) : null;
+    const record: EvalRecord = {
+      id: body.recordId ?? newServerId(),
+      url: body.url ?? prev?.url ?? null,
+      evaluatedAt: new Date().toISOString(),
+      meta,
+      reportHtml: sanitizeHtml(reportHtml),
+    };
+    await upsertRecord(record);
+
+    return NextResponse.json({ record });
   } catch (err) {
     if (err instanceof Anthropic.RateLimitError) {
       return NextResponse.json(

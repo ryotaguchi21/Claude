@@ -59,12 +59,13 @@ export interface ManualInput {
 export interface EvaluateRequest {
   url?: string;
   manual?: ManualInput;
+  /** 修正再評価・最新相場での再評価時に、置き換える既存レコードのID */
+  recordId?: string;
 }
 
-/** /api/evaluate の成功レスポンス */
+/** /api/evaluate の成功レスポンス（共有ストアへ保存済みのレコードを返す） */
 export interface EvaluateResponse {
-  meta: EvalMeta;
-  reportHtml: string;
+  record: EvalRecord;
 }
 
 /** /api/evaluate のエラーレスポンス */

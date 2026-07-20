@@ -5,7 +5,7 @@ import LoadingView from "@/components/LoadingView";
 import HistoryView from "@/components/HistoryView";
 import ResultView from "@/components/ResultView";
 import ManualForm from "@/components/ManualForm";
-import { addRecord, deleteRecord, loadHistory, newId, replaceRecord } from "@/lib/storage";
+import { deleteRecordRemote, fetchHistory, migrateLegacyHistoryOnce } from "@/lib/storage";
 import type {
   EvalRecord,
   EvaluateError,
@@ -22,12 +22,10 @@ interface ManualContext {
   initial?: Partial<ManualInput>;
   /** correction・再評価時に置き換える履歴ID */
   recordId?: string;
-  /** 元のURL（保持して履歴に残す） */
-  url?: string | null;
   note?: string;
 }
 
-async function callEvaluate(body: EvaluateRequest): Promise<EvaluateResponse> {
+async function callEvaluate(body: EvaluateRequest): Promise<EvalRecord> {
   const res = await fetch("/api/evaluate", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -39,7 +37,18 @@ async function callEvaluate(body: EvaluateRequest): Promise<EvaluateResponse> {
     err.code = data.code;
     throw err;
   }
-  return data;
+  return data.record;
+}
+
+function propertyToManual(record: EvalRecord): ManualInput {
+  return {
+    name: record.meta.property?.name ?? "",
+    address: record.meta.property?.address ?? "",
+    price: record.meta.property?.price ?? "",
+    area: record.meta.property?.area ?? "",
+    floor: record.meta.property?.floor ?? "",
+    builtYear: record.meta.property?.builtYear ?? "",
+  };
 }
 
 export default function Home() {
@@ -51,9 +60,22 @@ export default function Home() {
   const [manualCtx, setManualCtx] = useState<ManualContext | null>(null);
   const [reEvaluating, setReEvaluating] = useState(false);
 
+  // 起動時: 旧端末内履歴を共有ストアへ一度だけ移行してから、共有履歴を取得
   useEffect(() => {
-    setRecords(loadHistory());
+    (async () => {
+      await migrateLegacyHistoryOnce();
+      try {
+        setRecords(await fetchHistory());
+      } catch {
+        // 履歴取得失敗は評価機能自体を妨げない
+      }
+    })();
   }, []);
+
+  /** 一覧stateへ upsert（先頭へ） */
+  function upsertLocal(record: EvalRecord) {
+    setRecords((prev) => [record, ...prev.filter((r) => r.id !== record.id)]);
+  }
 
   /** 新規評価（URL入力） */
   async function evaluateUrl() {
@@ -62,15 +84,8 @@ export default function Home() {
     setError(null);
     setView("loading");
     try {
-      const data = await callEvaluate({ url: trimmed });
-      const record: EvalRecord = {
-        id: newId(),
-        url: trimmed,
-        evaluatedAt: new Date().toISOString(),
-        meta: data.meta,
-        reportHtml: data.reportHtml,
-      };
-      setRecords(addRecord(record));
+      const record = await callEvaluate({ url: trimmed });
+      upsertLocal(record);
       setCurrent(record);
       setView("result");
       setUrl("");
@@ -80,7 +95,6 @@ export default function Home() {
         // 掲載終了・読み取り失敗 → 手入力フォールバック
         setManualCtx({
           mode: "fallback",
-          url: trimmed,
           note: `ページを読み取れませんでした（${err.message}）。物件情報を入力すると評価できます。`,
         });
         setView("manual");
@@ -97,15 +111,8 @@ export default function Home() {
     setError(null);
     setView("loading");
     try {
-      const data = await callEvaluate({ manual: input });
-      const record: EvalRecord = {
-        id: ctx?.recordId ?? newId(),
-        url: ctx?.url ?? null,
-        evaluatedAt: new Date().toISOString(),
-        meta: data.meta,
-        reportHtml: data.reportHtml,
-      };
-      setRecords(ctx?.recordId ? replaceRecord(record) : addRecord(record));
+      const record = await callEvaluate({ manual: input, recordId: ctx?.recordId });
+      upsertLocal(record);
       setCurrent(record);
       setManualCtx(null);
       setView("result");
@@ -121,26 +128,11 @@ export default function Home() {
     setError(null);
     try {
       const body: EvaluateRequest = record.url
-        ? { url: record.url }
-        : {
-            manual: {
-              name: record.meta.property?.name ?? "",
-              address: record.meta.property?.address ?? "",
-              price: record.meta.property?.price ?? "",
-              area: record.meta.property?.area ?? "",
-              floor: record.meta.property?.floor ?? "",
-              builtYear: record.meta.property?.builtYear ?? "",
-            },
-          };
+        ? { url: record.url, recordId: record.id }
+        : { manual: propertyToManual(record), recordId: record.id };
       setView("loading");
-      const data = await callEvaluate(body);
-      const updated: EvalRecord = {
-        ...record,
-        evaluatedAt: new Date().toISOString(),
-        meta: data.meta,
-        reportHtml: data.reportHtml,
-      };
-      setRecords(replaceRecord(updated));
+      const updated = await callEvaluate(body);
+      upsertLocal(updated);
       setCurrent(updated);
       setView("result");
     } catch (e) {
@@ -149,15 +141,7 @@ export default function Home() {
         setManualCtx({
           mode: "fallback",
           recordId: record.id,
-          url: record.url,
-          initial: {
-            name: record.meta.property?.name ?? "",
-            address: record.meta.property?.address ?? "",
-            price: record.meta.property?.price ?? "",
-            area: record.meta.property?.area ?? "",
-            floor: record.meta.property?.floor ?? "",
-            builtYear: record.meta.property?.builtYear ?? "",
-          },
+          initial: propertyToManual(record),
           note: "掲載が終了した可能性があります。物件情報を確認して再評価できます。",
         });
         setView("manual");
@@ -175,21 +159,14 @@ export default function Home() {
     setManualCtx({
       mode: "correction",
       recordId: record.id,
-      url: record.url,
-      initial: {
-        name: record.meta.property?.name ?? "",
-        address: record.meta.property?.address ?? "",
-        price: record.meta.property?.price ?? "",
-        area: record.meta.property?.area ?? "",
-        floor: record.meta.property?.floor ?? "",
-        builtYear: record.meta.property?.builtYear ?? "",
-      },
+      initial: propertyToManual(record),
     });
     setView("manual");
   }
 
-  function handleDelete(id: string) {
-    setRecords(deleteRecord(id));
+  async function handleDelete(id: string) {
+    setRecords((prev) => prev.filter((r) => r.id !== id));
+    await deleteRecordRemote(id);
   }
 
   return (
@@ -197,7 +174,7 @@ export default function Home() {
       {view === "input" && (
         <>
           <header className="app-header">
-            <h1>🏢 中古マンション評価</h1>
+            <h1>🏠 Kei House Search</h1>
           </header>
           {error && <div className="error-box">{error}</div>}
           <div className="card">
@@ -220,9 +197,9 @@ export default function Home() {
             </button>
           </div>
           <button type="button" className="btn-secondary" onClick={() => setView("history")}>
-            📚 過去に評価した物件を見る{records.length > 0 ? `（${records.length}件）` : ""}
+            📚 評価ずみ物件を見る{records.length > 0 ? `（${records.length}件）` : ""}
           </button>
-          <p className="footer-note">履歴はこの端末のブラウザ内にだけ保存されます（ログイン不要）</p>
+          <p className="footer-note">評価結果はみんなで共有されます（ログイン不要）</p>
         </>
       )}
 
@@ -298,7 +275,7 @@ export default function Home() {
             <button type="button" className="back" aria-label="戻る" onClick={() => setView("input")}>
               ←
             </button>
-            <h1>評価した物件の履歴</h1>
+            <h1>評価ずみ物件（共有）</h1>
           </header>
           <HistoryView
             records={records}

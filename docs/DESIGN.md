@@ -32,8 +32,8 @@
 |---|---|---|
 | フレームワーク | Next.js 14 (App Router) + TypeScript | 1リポジトリでUIとAPIキー秘匿（サーバールート）を両立 |
 | LLM | `claude-opus-4-8` + Web検索/Webフェッチ | 物件ページ読取と相場調査をサーバーツールで完結。スクレイピング実装不要 |
-| 保存 | localStorage | 既定方針「端末内保存・ログイン不要」。共有要件が出たらDB化（§8） |
-| スタイル | 素CSS（globals.css） | 依存最小。信号色・文字サイズ規定を直接管理 |
+| 保存 | サーバー共有ストア（`data/history.json` + `/api/history`） | 全ユーザー共有・ログイン不要（v2で変更）。サーバーレス本番では `DATA_DIR` 永続化 or KV/DB差し替え |
+| スタイル | 素CSS（globals.css） | 依存最小。信号色・文字サイズ規定を直接管理。UI/UXは apple-design スキル準拠（v2） |
 
 ## 3. 画面設計（3画面 + 補助2画面）
 
@@ -67,7 +67,7 @@
 ## 4. データ設計
 
 ```ts
-EvalRecord {                 // 履歴1件（localStorage: "mansion-eval-history-v1"）
+EvalRecord {                 // 履歴1件（共有ストア data/history.json。旧localStorage分は初回アクセス時に自動移行）
   id: string                 // ev_<ts36>_<rand>
   url: string | null         // 手入力評価は null
   evaluatedAt: string        // ISO 8601
@@ -126,12 +126,12 @@ history --🗑--> confirm → 削除
 | 掲載終了・読取失敗 | LLMがERRORブロック→422→手入力フォールバック画面 |
 | LLM出力の解析失敗 | 502 PARSE_FAILED「もう一度お試しください」 |
 | レート制限/refusal/通信断 | ユーザー向け平易文言でエラーボックス表示。履歴は壊さない |
-| localStorage容量超過 | 古い履歴を半分に間引いて再保存 |
+| 共有ストア書き込み失敗 | 一時ファイル書き込み→rename のアトミック更新。読めない場合は空配列扱い |
 
 ## 8. 将来拡張（現時点では実装しない）
 
-- **複数端末共有**: ログイン（NextAuth等）+ DB（Supabase/Postgres）へ `EvalRecord` を移行。
-  `lib/storage.ts` のインターフェースを維持したままバックエンド実装を差し替える設計
+- **永続DB化**: 共有はv2で実装済み（ログイン不要のファイルストア）。本番の耐久性が必要になったら
+  `lib/server-store.ts` のインターフェースを維持したまま KV/Postgres 実装に差し替える
 - SSEストリーミングでローディングに実進捗（検索クエリ等）を表示
 - 履歴の並び替え・比較ビュー（2物件横並び）
 
