@@ -149,8 +149,16 @@ export async function POST(request: Request) {
     );
   }
   if (!process.env.ANTHROPIC_API_KEY) {
+    // 運用方針(2026-07-20): API利用料を追加で払わずサブスクリプション内で運用するため、
+    // アプリ内の自動評価はオフ。新規評価はClaude(Code)が同じ書式で行い data/history.json に追記する。
     return NextResponse.json(
-      { error: "サーバーに ANTHROPIC_API_KEY が設定されていません", code: "API_ERROR" },
+      {
+        error:
+          "このアプリでの自動評価はいまオフになっています（API利用料節約のため）。" +
+          "新しい物件は Claude に「この物件を評価して: URL」と伝えてください。" +
+          "評価が終わると、この画面の「評価ずみ物件」一覧に自動で追加されます。",
+        code: "API_ERROR",
+      },
       { status: 500 },
     );
   }
