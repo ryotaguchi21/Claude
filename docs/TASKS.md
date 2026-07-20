@@ -61,9 +61,12 @@ adaptive thinking、streaming + `finalMessage()`、`pause_turn` 継続（最大5
 
 ## フェーズ4: 残作業 【⬜ ここからOpusに依頼する】
 
-### T-09 ⬜ 評価エンジンプロンプトの差し替え
-- **前提**: ユーザーから「評価エンジンプロンプト」全文を受領していること（仕様書ではプレースホルダのまま）
-- **対象**: `lib/evaluation-prompt.ts` のみ
+### T-09 ✅ 評価エンジンプロンプトの差し替え（2026-07-20 完了）
+- 実施内容: Ryoの実運用システム `property-mansion-search`（Dropbox `Claude (WORKING)/property-mansion-search/`）の
+  DD・スコアリング方法論（DD_REPLICATION_GUIDE.md / scoring.py / bid.py / building_fair.py）を
+  `ENGINE_PROMPT` に移植。8軸100点採点・指値計算式・建物履歴比クロスチェック・落とし穴回避を含む。
+  あわせて評価済み99物件のシードデータを `data/history.json` に投入
+  （生成元: `property-mansion-search/_export_kei_seed.py`。再実行で最新スキャン結果に更新可能）。
 - **受け入れ**: デフォルト文が完全に消え、受領全文が無改変で入っている。バッククォート等のエスケープ起因の構文エラーがない。`npm run build` 成功
 - **Opusへの指示文**:
   > `lib/evaluation-prompt.ts` の `ENGINE_PROMPT` の中身を、以下に添付するプロンプト全文で完全に置き換えて。一切改変しないこと（テンプレートリテラルのエスケープが必要な場合のみ \` と \\ をエスケープし、内容は変えない）。他ファイルは触らない。`npm run build` が通ることを確認してコミット・プッシュして。
