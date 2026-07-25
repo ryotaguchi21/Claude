@@ -66,37 +66,37 @@
   "reportHtml": "<section class=\"report-section\"><h3>📋 1. サマリ</h3><p><span class=\"grade grade-good\">◎ 割安</span> 総合判断: <strong>条件つき</strong></p><p>総合69.1点（候補99件中2位）・相場比+11.9%・同建物履歴比-8.8%。このレコードは物件モニタリングシステム（毎日自動スキャン）からの移行データです。最新の詳細分析は <a href=\"https://taguchi-mansion.pages.dev/#b53b7f9aa\" target=\"_blank\" rel=\"noopener\">詳細評価レポート</a> を参照してください。</p></section><section class=\"report-section\"><h3>🏠 2. 物件概要</h3><dl class=\"spec-list\"><dt>名称</dt><dd>晴海アイランドトリトンスクエアビュータワー</dd><dt>住所</dt><dd>中央区東京都中央区晴海1丁目</dd><dt>最寄駅</dt><dd>月島駅 徒歩7分</dd><dt>売出価格</dt><dd>1億980万円</dd><dt>専有面積</dt><dd>69.86m²</dd><dt>間取り</dt><dd>2LDK+</dd><dt>所在階</dt><dd>34階</dd><dt>向き</dt><dd>南東</dd><dt>築年</dt><dd>築28年</dd><dt>総戸数</dt><dd>624戸</dd><dt>管理費</dt><dd>不明</dd><dt>修繕積立金</dt><dd>不明</dd></dl></section><section class=\"report-section\"><h3>💰 3. 価格の妥当性</h3><p>評価: <span class=\"grade grade-good\">◎ 割安</span>（国交省の実成約データ比 +11.9%）</p><p>🎯 推奨指値: <strong class=\"big-number\">1億980万<small>万円</small></strong>（現状価格で可・割安。5年住んで売却しても売買コストを回収して利益が残る買値の目安）</p><p>🏢 同じ建物の過去売出と比べて <strong>-8.8%</strong>（過去実績の適正値 172.3万円/㎡・3件から補正）</p></section><section class=\"report-section\"><h3>🚃🌳💬 4. その他定性情報</h3><p>🚃 渋谷25分・蔵前14分・船橋35分</p><p>🎓 学区: 月島第三小学校</p><p>スコア内訳・口コミ・駅の将来性・過去の売出履歴は <a href=\"https://taguchi-mansion.pages.dev/#b53b7f9aa\" target=\"_blank\" rel=\"noopener\">詳細評価レポート（該当物件に直接ジャンプ）</a> にあります。</p></section>"
  },
  {
-  "id": "seed_290acdb0a98b",
+  "id": "ev_tiql8d_1b4qef",
   "url": "https://www.nomu.com/mansion/id/K9870026/",
-  "evaluatedAt": "2026-07-20T09:00:00+09:00",
+  "evaluatedAt": "2026-07-26T00:19:23+09:00",
   "meta": {
    "propertyName": "プラウドタワー小岩ファースト",
-   "verdict": "△",
-   "verdictLabel": "やや割高",
-   "summary": "総合67.8点（候補99件中3位）・相場比+0.5%・同建物履歴比+4.2%",
-   "recommendation": "条件つき",
+   "verdict": "◎",
+   "verdictLabel": "割安",
+   "summary": "総合73点前後・売出149万/㎡は同建物相場157〜162万/㎡を下回る（4階の低層分）・築3年駅1分。最大の留意点は荒川ハザード",
+   "recommendation": "買い（有力）",
    "property": {
     "name": "プラウドタワー小岩ファースト",
-    "address": "江戸川区南小岩6丁目",
+    "address": "東京都江戸川区南小岩6丁目",
     "station": "小岩駅 徒歩1分",
     "price": "9,350万円",
     "area": "62.97m²",
     "layout": "2LDK",
     "floor": "4階/22階建",
     "direction": "南",
-    "builtYear": "築4年",
+    "builtYear": "築3年",
     "totalUnits": "233戸",
-    "managementFee": "24,450円",
-    "repairFund": "9,460円"
+    "managementFee": "24,450円/月",
+    "repairFund": "9,460円/月"
    },
    "priceGauge": {
-    "fairMin": 8930,
-    "fairMax": 9870,
+    "fairMin": 9470,
+    "fairMax": 9770,
     "listPrice": 9350,
-    "targetPrice": 9350
+    "targetPrice": 9290
    }
   },
-  "reportHtml": "<section class=\"report-section\"><h3>📋 1. サマリ</h3><p><span class=\"grade grade-warn\">△ やや割高</span> 総合判断: <strong>条件つき</strong></p><p>総合67.8点（候補99件中3位）・相場比+0.5%・同建物履歴比+4.2%。このレコードは物件モニタリングシステム（毎日自動スキャン）からの移行データです。最新の詳細分析は <a href=\"https://taguchi-mansion.pages.dev/#b290acdb0\" target=\"_blank\" rel=\"noopener\">詳細評価レポート</a> を参照してください。</p></section><section class=\"report-section\"><h3>🏠 2. 物件概要</h3><dl class=\"spec-list\"><dt>名称</dt><dd>プラウドタワー小岩ファースト</dd><dt>住所</dt><dd>江戸川区南小岩6丁目</dd><dt>最寄駅</dt><dd>小岩駅 徒歩1分</dd><dt>売出価格</dt><dd>9,350万円</dd><dt>専有面積</dt><dd>62.97m²</dd><dt>間取り</dt><dd>2LDK</dd><dt>所在階</dt><dd>4階/22階建</dd><dt>向き</dt><dd>南</dd><dt>築年</dt><dd>築4年</dd><dt>総戸数</dt><dd>233戸</dd><dt>管理費</dt><dd>24,450円</dd><dt>修繕積立金</dt><dd>9,460円</dd></dl></section><section class=\"report-section\"><h3>💰 3. 価格の妥当性</h3><p>評価: <span class=\"grade grade-warn\">△ やや割高</span>（国交省の実成約データ比 +0.5%）</p><p>🎯 推奨指値: <strong class=\"big-number\">9,350万<small>万円</small></strong>（現状価格で可。5年住んで売却しても売買コストを回収して利益が残る買値の目安）</p><p>🏢 同じ建物の過去売出と比べて <strong>+4.2%</strong>（過去実績の適正値 142.5万円/㎡・5件から補正）</p></section><section class=\"report-section\"><h3>🚃🌳💬 4. その他定性情報</h3><p>🚃 渋谷45分・蔵前26分・船橋15分</p><p>🎓 学区: 下小岩小学校</p><p>スコア内訳・口コミ・駅の将来性・過去の売出履歴は <a href=\"https://taguchi-mansion.pages.dev/#b290acdb0\" target=\"_blank\" rel=\"noopener\">詳細評価レポート（該当物件に直接ジャンプ）</a> にあります。</p></section>"
+  "reportHtml": "<section class=\"report-section\"><h3>📋 1. サマリ</h3><p><span class=\"grade grade-good\">◎ 割安</span> 総合判断: <strong>買い（有力）</strong></p><p>売出単価148.5万円/㎡は同建物の現在相場（157〜162万円/㎡）を下回る。4階（低層）による割引を考慮しても概ね妥当〜やや割安。築3年・小岩駅徒歩1分・野村プラウドタワーブランドで売却力が高い。総合スコア73点前後。最大の留意点は荒川氾濫ハザード。</p></section><section class=\"report-section\"><h3>🏠 2. 物件概要</h3><dl class=\"spec-list\"><dt>名称</dt><dd>プラウドタワー小岩ファースト</dd><dt>住所</dt><dd>東京都江戸川区南小岩6丁目</dd><dt>最寄駅</dt><dd>JR中央・総武線「小岩」駅 徒歩1分</dd><dt>売出価格</dt><dd>9,350万円</dd><dt>専有面積</dt><dd>62.97m²</dd><dt>間取り</dt><dd>2LDK</dd><dt>所在階</dt><dd>4階/22階建（RC免震タワー）</dd><dt>向き</dt><dd>南</dd><dt>築年</dt><dd>築3年（2022年3月）</dd><dt>総戸数</dt><dd>233戸</dd><dt>管理費</dt><dd>24,450円/月</dd><dt>修繕積立金</dt><dd>9,460円/月（150円/㎡・築浅ゆえ将来増額前提）</dd><dt>現況</dt><dd>居住中</dd><dt>分譲</dt><dd>野村不動産プラウドタワー</dd></dl></section><section class=\"report-section\"><h3>💰 3. 価格の妥当性</h3><p>評価: <span class=\"grade grade-good\">◎ 割安</span>（同建物相場157〜162万円/㎡、4階の低層補正後の適正150〜155万円/㎡に対し売出148.5万円/㎡）</p><p>🏢 建物履歴比: 同建物の現在単価157〜162万円/㎡に対し本住戸は148.5万円/㎡。4階のタワー低層分（眺望プレミアム減）を差し引いても適正下限をわずかに下回り、割安圏。同建物の2LDK/60〜65㎡事例は126〜153万円/㎡で、本件はその上位だが最高値未満。</p><p>🎯 推奨指値: <strong class=\"big-number\">9,290<small>万円</small></strong>（売出−0.6%。実力価値152万円/㎡・保守年率2.5%で試算した回収可能買値9,570万円を売出が下回っており、現状価格でも妥当。9,300万円前後まで交渉できれば理想）。</p></section><section class=\"report-section\"><h3>📊 4. 総合スコア内訳（100点）</h3><ul><li>交通 17/20：小岩徒歩1分、総武線（快速停車駅）</li><li>価格妥当性 13/15：同建物相場を下回る割安圏</li><li>売却力 10/13：野村プラウドタワー・駅前233戸で流動性高、2LDK/62㎡はやや小</li><li>ハザード 4/10：江戸川区は区域94.1%が浸水想定、荒川氾濫で最大浸水深5.0m。4階は要注意（垂直避難は可）</li><li>再開発 5/7：小岩駅周辺再開発が進行中（構想〜事業中）</li><li>建物 13/15：築3年RC免震タワー・野村ブランド、修繕積立金150円/㎡は築浅ゆえ将来増額前提</li><li>住戸 9/15：62㎡・4階・南向き・2LDK（面積と低層で減点）</li><li>資金 2/5：総額9,350万円＋管理・修繕月3.4万円で固定費は高め</li></ul></section><section class=\"report-section\"><h3>🚃🌊 5. 定性・ハザード・将来性</h3><p>🌊 ハザード（最重要）: 江戸川区南小岩は荒川氾濫時に最大浸水深5.0m想定、区域の94.1%が浸水想定区域。免震タワーで垂直避難は可能だが、4階は浸水想定内に入る恐れがあり、長期浸水・停電・エレベーター停止リスクを許容できるか要判断。</p><p>🚉 立地・将来性: 小岩駅徒歩1分・総武線快速停車。小岩駅周辺は再開発が進行中で街の更新が期待できる（事業中〜構想）。</p><p>🏢 注意: 修繕積立金150円/㎡は築3年時点の水準で、長期修繕計画に沿って今後段階増額される前提。計画書の確認必須。</p></section><section class=\"report-section\"><h3>✅ 6. 強み・弱み・確認ポイント</h3><p><strong>強み</strong>: ①築3年・小岩駅徒歩1分・野村プラウドタワーで資産性/売却力が高い ②同建物相場を下回る割安な売出単価</p><p><strong>弱み</strong>: ①荒川氾濫ハザード（最大5m・区域94%）が最大の弱点 ②4階でタワーの眺望プレミアムが乏しい ③62㎡2LDKはファミリーにはやや手狭</p><p><strong>内見時</strong>: 4階の南向き採光・前建の圧迫感、免震・防災設備と非常用電源、長期修繕計画の増額スケジュール、居住中のため引渡し時期。指値交渉材料＝4階（低層）・2LDKの面積・ハザード。</p><p><strong>出典</strong>: ノムコム物件ページ、マンションナビ（t23m-navi 4211004）、SUUMO/mansionvalue各相場、江戸川区水害ハザードマップ第2版（2025年7月）。</p><p><small>※本評価は機械調査であり、最終判断は現地確認と重要事項説明で行ってください。</small></p></section>"
  },
  {
   "id": "seed_d96fd78b470e",
@@ -3265,5 +3265,71 @@
    }
   },
   "reportHtml": "<section class=\"report-section\"><h3>📋 1. サマリ</h3><p><span class=\"grade grade-bad\">× 割高</span> 総合判断: <strong>見送り</strong></p><p>総合48.8点（候補99件中99位）・相場比-36.0%。このレコードは物件モニタリングシステム（毎日自動スキャン）からの移行データです。最新の詳細分析は <a href=\"https://taguchi-mansion.pages.dev/#b01b6015a\" target=\"_blank\" rel=\"noopener\">詳細評価レポート</a> を参照してください。</p></section><section class=\"report-section\"><h3>🏠 2. 物件概要</h3><dl class=\"spec-list\"><dt>名称</dt><dd>ゼファ―浅草馬道通り</dd><dt>住所</dt><dd>台東区東京都台東区浅草6丁目</dd><dt>最寄駅</dt><dd>浅草駅 徒歩9分</dd><dt>売出価格</dt><dd>1億980万円</dd><dt>専有面積</dt><dd>62.06m²</dd><dt>間取り</dt><dd>3LDK</dd><dt>所在階</dt><dd>6階</dd><dt>向き</dt><dd>南東</dd><dt>築年</dt><dd>築24年</dd><dt>総戸数</dt><dd>28戸</dd><dt>管理費</dt><dd>不明</dd><dt>修繕積立金</dt><dd>不明</dd></dl></section><section class=\"report-section\"><h3>💰 3. 価格の妥当性</h3><p>評価: <span class=\"grade grade-bad\">× 割高</span>（国交省の実成約データ比 -36.0%）</p><p>🎯 推奨指値: <strong class=\"big-number\">8,070万<small>万円</small></strong>（要交渉 −26.5%(強気)。5年住んで売却しても売買コストを回収して利益が残る買値の目安）</p></section><section class=\"report-section\"><h3>🚃🌳💬 4. その他定性情報</h3><p>🎓 学区: 富士小学校</p><p>スコア内訳・口コミ・駅の将来性・過去の売出履歴は <a href=\"https://taguchi-mansion.pages.dev/#b01b6015a\" target=\"_blank\" rel=\"noopener\">詳細評価レポート（該当物件に直接ジャンプ）</a> にあります。</p></section>"
+ },
+ {
+  "id": "ev_tiql8b_cynep2",
+  "url": "https://suumo.jp/ms/chuko/tokyo/sc_koto/nc_20484678/",
+  "evaluatedAt": "2026-07-26T00:19:23+09:00",
+  "meta": {
+   "propertyName": "レクセルプラザ東陽町",
+   "verdict": "○",
+   "verdictLabel": "妥当",
+   "summary": "総合64点前後・売出127万/㎡は同建物相場124〜129万/㎡内・全室リフォーム済",
+   "recommendation": "条件つき（検討）",
+   "property": {
+    "name": "レクセルプラザ東陽町",
+    "address": "東京都江東区塩浜2-29-4",
+    "station": "東陽町駅 徒歩9分",
+    "price": "9,980万円",
+    "area": "78.46m²",
+    "layout": "3LDK",
+    "floor": "9階/14階建",
+    "direction": "東",
+    "builtYear": "築19年",
+    "totalUnits": "83戸",
+    "managementFee": "11,000円/月",
+    "repairFund": "21,260円/月"
+   },
+   "priceGauge": {
+    "fairMin": 9730,
+    "fairMax": 10090,
+    "listPrice": 9980,
+    "targetPrice": 9900
+   }
+  },
+  "reportHtml": "<section class=\"report-section\"><h3>📋 1. サマリ</h3><p><span class=\"grade grade-good\">○ 妥当</span> 総合判断: <strong>条件つき（検討）</strong></p><p>売出単価127.2万円/㎡は同じ建物の現在相場（124.0〜128.6万円/㎡）のレンジ内で、直近の同建物3LDK/80㎡事例131万円/㎡（2026年4-6月）よりむしろ安い。壁・床・全室の内装リフォーム込みで78㎡の3LDKとしては妥当な価格。総合スコア64点前後。</p></section><section class=\"report-section\"><h3>🏠 2. 物件概要</h3><dl class=\"spec-list\"><dt>名称</dt><dd>レクセルプラザ東陽町</dd><dt>住所</dt><dd>東京都江東区塩浜2-29-4</dd><dt>最寄駅</dt><dd>東京メトロ東西線「東陽町」駅 徒歩9分</dd><dt>売出価格</dt><dd>9,980万円</dd><dt>専有面積</dt><dd>78.46m²</dd><dt>間取り</dt><dd>3LDK</dd><dt>所在階</dt><dd>9階/14階建（RC造）</dd><dt>向き</dt><dd>東</dd><dt>築年</dt><dd>築19年（2006年8月）</dd><dt>総戸数</dt><dd>83戸</dd><dt>管理費</dt><dd>11,000円/月</dd><dt>修繕積立金</dt><dd>21,260円/月（271円/㎡・健全）</dd><dt>現況</dt><dd>即引渡可（内装リフォーム2026年7月完了予定）</dd></dl></section><section class=\"report-section\"><h3>💰 3. 価格の妥当性</h3><p>評価: <span class=\"grade grade-good\">○ 妥当</span>（同建物の現在相場帯 124.0〜128.6万円/㎡・単価124万円/㎡台の下限〜中位）</p><p>🏢 建物履歴比: 同じ建物の直近事例131万円/㎡（80㎡・2026年Q2）に対し本住戸は127.2万円/㎡で、同建物の実績より約2.9%安い。リフォーム済みでこの単価は割安寄り。</p><p>🎯 推奨指値: <strong class=\"big-number\">9,900<small>万円</small></strong>（売出−0.8%。5年住んで売却してもコスト回収+最低利益が残る買値の目安。保守年率2.5%・売却コスト3.5%・購入コスト7%で試算）。売出はほぼ指値水準で、現状価格でも許容範囲。</p></section><section class=\"report-section\"><h3>📊 4. 総合スコア内訳（100点）</h3><ul><li>交通 11/20：東陽町徒歩9分・実質東西線1本（8分超で減点）</li><li>価格妥当性 10/15：同建物相場内〜やや割安</li><li>売却力 8/13：3LDK・78㎡は好条件、83戸は中規模</li><li>ハザード 6/10：塩浜は浸水想定2〜3m・液状化リスク高だが9階で浸水は緩和</li><li>再開発 5/7：有楽町線延伸「豊住線」東陽町駅（2024年着工・2030年代半ば開業予定）</li><li>建物 10/15：築19年RC、修繕積立金271円/㎡は健全</li><li>住戸 12/15：78㎡・9階・3LDK・全室リフォーム済（向きは東で中位）</li><li>資金 2/5：総額9,980万円で月々負担は大きめ</li></ul></section><section class=\"report-section\"><h3>🚃🌊 5. 定性・ハザード・将来性</h3><p>🌊 ハザード: 江東区塩浜は0m地帯で荒川氾濫時の浸水想定2.0〜3.0m、液状化リスク高。所在9階のため居室の浸水リスクは低いが、停電・エレベーター停止・インフラ液状化は要留意。</p><p>🚉 将来性: 有楽町線延伸（豊住線＝住吉〜東陽町〜豊洲、着工済・2030年代半ば開業予定）で東陽町の利便性向上見込み（予定）。</p><p>🏢 管理: 修繕積立金271円/㎡は170円/㎡基準を上回り健全。</p></section><section class=\"report-section\"><h3>✅ 6. 強み・弱み・確認ポイント</h3><p><strong>強み</strong>: ①同建物相場に対し割安寄りの全室リフォーム済 ②78㎡3LDK＋9階で居住性・売却力が高い</p><p><strong>弱み</strong>: ①東陽町徒歩9分は駅近とは言えない ②0m地帯の液状化リスク ③東向き</p><p><strong>内見時</strong>: リフォームの仕上げ品質、東向き居室の採光・眺望、共用部の管理状態、長期修繕計画と積立金の増額予定。指値交渉材料＝徒歩9分・東向き・総額の大きさ。</p><p><strong>出典</strong>: SUUMO物件ページ、マンションナビ（t23m-navi 2489）、mansion-review/イエシル各相場、江東区水害ハザードマップ。</p><p><small>※本評価は機械調査であり、最終判断は現地確認と重要事項説明で行ってください。</small></p></section>"
+ },
+ {
+  "id": "ev_tiql8c_944tfi",
+  "url": "https://ebisu-sales.com/mansion/%E5%A3%B2%E8%B2%B7/8477/27379/",
+  "evaluatedAt": "2026-07-26T00:19:23+09:00",
+  "meta": {
+   "propertyName": "グランエスタ",
+   "verdict": "○",
+   "verdictLabel": "妥当",
+   "summary": "総合68点前後・売出135万/㎡は同建物相場帯内・南砂町3分/671戸大規模/リノベ済（相場確度中）",
+   "recommendation": "条件つき（有力）",
+   "property": {
+    "name": "グランエスタ",
+    "address": "東京都江東区新砂3-4-43",
+    "station": "南砂町駅 徒歩3分",
+    "price": "9,950万円",
+    "area": "73.77m²",
+    "layout": "3LDK+WIC",
+    "floor": "7階/20階建",
+    "direction": "南西",
+    "builtYear": "築20年",
+    "totalUnits": "671戸",
+    "managementFee": "9,500円/月",
+    "repairFund": "11,960円/月"
+   },
+   "priceGauge": {
+    "fairMin": 9220,
+    "fairMax": 10330,
+    "listPrice": 9950,
+    "targetPrice": 9740
+   }
+  },
+  "reportHtml": "<section class=\"report-section\"><h3>📋 1. サマリ</h3><p><span class=\"grade grade-good\">○ 妥当</span> 総合判断: <strong>条件つき（有力）</strong></p><p>売出単価134.9万円/㎡は同建物の現在売出相場（約140万円/㎡）を下回り、リノベーション済み・空室・南砂町徒歩3分の671戸大規模マンションとして妥当〜やや割安。ただし2025年の成約データは96〜120万円/㎡と幅があり相場の確度は中程度。総合スコア68点前後。</p></section><section class=\"report-section\"><h3>🏠 2. 物件概要</h3><dl class=\"spec-list\"><dt>名称</dt><dd>グランエスタ</dd><dt>住所</dt><dd>東京都江東区新砂3-4-43</dd><dt>最寄駅</dt><dd>東京メトロ東西線「南砂町」駅 徒歩3分／有楽町線「辰巳」駅 徒歩12分</dd><dt>売出価格</dt><dd>9,950万円</dd><dt>専有面積</dt><dd>73.77m²</dd><dt>間取り</dt><dd>3LDK+WIC</dd><dt>所在階</dt><dd>7階/20階建（RC造）</dd><dt>向き</dt><dd>南西</dd><dt>築年</dt><dd>築20年（2005年12月）</dd><dt>総戸数</dt><dd>671戸（大規模）</dd><dt>管理費</dt><dd>9,500円/月</dd><dt>修繕積立金</dt><dd>11,960円/月（162円/㎡・やや低め）</dd><dt>現況</dt><dd>空室（即入居可・リノベーション済）</dd></dl></section><section class=\"report-section\"><h3>💰 3. 価格の妥当性</h3><p>評価: <span class=\"grade grade-good\">○ 妥当</span>（同建物の現在相場帯 約125〜140万円/㎡。売出134.9万円/㎡は上位だがレンジ内）</p><p>🏢 建物履歴比: 同建物の現在売出相場約140万円/㎡に対し本住戸は134.9万円/㎡（約-3.6%）。ただし2025年成約は96〜120万円/㎡と下振れ実績もあり、確度は中。リノベーション分の上乗せは妥当。</p><p>🎯 推奨指値: <strong class=\"big-number\">9,740<small>万円</small></strong>（売出−2.1%。実力価値132万円/㎡・保守年率2.5%で5年保有回収試算）。9,700万円台まで引ければ堅い買い。</p></section><section class=\"report-section\"><h3>📊 4. 総合スコア内訳（100点）</h3><ul><li>交通 15/20：南砂町徒歩3分＋辰巳徒歩12分、東西線</li><li>価格妥当性 10/15：同建物相場内〜やや割安（確度中）</li><li>売却力 11/13：671戸の大規模で流動性最高、商業施設スナモ隣接、3LDK</li><li>ハザード 5/10：新砂は0m埋立地で浸水想定・液状化リスク、7階で浸水は緩和</li><li>再開発 3/7：南砂町駅のメトロ改良は進行、豊住線は東陽町側で恩恵は限定的</li><li>建物 9/15：築20年RC大規模・管理良好だが修繕積立金162円/㎡はやや低め</li><li>住戸 13/15：73㎡・7階・南西・3LDK・リノベ済</li><li>資金 2/5：総額9,950万円だが管理費9,500円と割安</li></ul></section><section class=\"report-section\"><h3>🚃🌊 5. 定性・ハザード・将来性</h3><p>🌊 ハザード: 江東区新砂は埋立の0m地帯で荒川氾濫時の浸水想定2〜3m・液状化リスク高。所在7階で居室浸水リスクは低い。</p><p>🛒 生活利便: 商業施設「南砂町ショッピングセンターSUNAMO（スナモ）」が約80m、公園が近接。口コミ評価4.4/5.0で管理・警備は良好との評。</p><p>🏢 注意: 修繕積立金162円/㎡は170円/㎡基準をやや下回り、大規模ゆえ将来の増額・一時金の可能性に留意。</p></section><section class=\"report-section\"><h3>✅ 6. 強み・弱み・確認ポイント</h3><p><strong>強み</strong>: ①南砂町3分＋671戸大規模で流動性が高い ②リノベーション済み・空室で即入居可、スナモ隣接の生活利便</p><p><strong>弱み</strong>: ①0m埋立地の液状化・浸水想定 ②修繕積立金がやや低く将来増額リスク ③相場データの幅が広く確度中</p><p><strong>内見時</strong>: リノベーションの範囲と設備更新（給排水管）、修繕積立金の値上げ計画と大規模修繕履歴、南西住戸の西日、共用部の管理状態。指値交渉材料＝積立金の低さ・築20年・総額。</p><p><strong>出典</strong>: ebisu-sales物件ページ、マンションレビュー（17537）、ノムコム/mansion-market/イエシル各相場、江東区水害ハザードマップ。</p><p><small>※本評価は機械調査であり、最終判断は現地確認と重要事項説明で行ってください。</small></p></section>"
  }
 ]
