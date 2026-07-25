@@ -11,9 +11,16 @@ Usage:
   python tools/queue.py done <行番号> <結果リンク> [メモ]   # 状態=評価済み✓ に更新
 Token: ../ramune-weekly-report/token.pickle (spreadsheets スコープ)
 """
-import io, json, subprocess, sys
+import io, json, os, subprocess, sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+
+# Running as `python tools/queue.py` puts this file's dir on sys.path[0], which
+# shadows the stdlib `queue` module and breaks urllib3 (queue.LifoQueue) inside
+# the Google auth imports used by svc(). Drop our own dir from sys.path so the
+# stdlib `queue` resolves correctly. (This module never imports itself.)
+_self_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path[:] = [p for p in sys.path if os.path.abspath(p or os.getcwd()) != _self_dir]
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 HERE = Path(__file__).resolve().parent.parent          # kei-house-search/
