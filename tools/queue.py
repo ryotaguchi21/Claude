@@ -42,9 +42,27 @@ def svc():
     return build("sheets", "v4", credentials=creds)
 
 
+def _wrangler_env() -> dict:
+    """os.environ + CLOUDFLARE_API_TOKEN.
+
+    Without an explicit token wrangler falls back to its own OAuth session
+    (~/.wrangler/config/default.toml), which does not reach this account and
+    fails the whole drain with `Authentication error [code: 10000]`. Resolve
+    the token the canonical way instead (shared/cf_deploy.py).
+    """
+    env = dict(os.environ)
+    if env.get("CLOUDFLARE_API_TOKEN", "").strip():
+        return env
+    sys.path.insert(0, str(WS))
+    from shared.cf_deploy import resolve_cf_token
+    resolve_cf_token(env=env, root=WS)          # writes the token into `env`
+    return env
+
+
 def _wrangler(*args) -> str:
     r = subprocess.run(["npx.cmd" if sys.platform == "win32" else "npx", "wrangler", *args],
-                       capture_output=True, text=True, cwd=HERE, encoding="utf-8", errors="replace")
+                       capture_output=True, text=True, cwd=HERE, encoding="utf-8",
+                       errors="replace", env=_wrangler_env())
     if r.returncode != 0:
         raise RuntimeError(f"wrangler {' '.join(args)} failed: {r.stderr[-400:]}")
     return r.stdout
